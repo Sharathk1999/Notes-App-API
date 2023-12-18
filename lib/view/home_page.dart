@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:notes_app_005/controller/database_controller.dart';
+import 'package:notes_app_005/view/new_note_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final DatabaseController databaseController = Get.put(DatabaseController()); 
+    final DatabaseController databaseController = Get.put(DatabaseController());
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -23,7 +24,7 @@ class HomePage extends StatelessWidget {
         ),
       ),
       body: Obx(
-        ()=> GridView.builder(
+        () => GridView.builder(
           padding: const EdgeInsets.all(5),
           itemCount: databaseController.notesList.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -40,16 +41,20 @@ class HomePage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
                 color: Colors.black.withAlpha(50),
               ),
-              child:  Column(
+              child: Column(
                 children: [
                   Row(
                     children: [
-                      Text(
-                        databaseController.notesList[index].title!,
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 24,
-                          fontWeight: FontWeight.w600,
+                      Flexible(
+                        child: Text(
+                          databaseController.notesList[index].title!,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 22,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                     ],
@@ -85,7 +90,14 @@ class HomePage extends StatelessWidget {
             bottomRight: Radius.circular(20),
           ),
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const NewNotePage(),
+            ),
+          );
+        },
         child: const Icon(
           Icons.add_circle_rounded,
           color: Colors.black,
