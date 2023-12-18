@@ -17,12 +17,12 @@ class NoteModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["title"] = title;
-    _data["description"] = description;
-    _data["date"] = date;
-    _data["time"] = time;
-    _data["id"] = id;
-    return _data;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["title"] = title;
+    data["description"] = description;
+    data["date"] = date;
+    data["time"] = time;
+    data["id"] = id;
+    return data;
   }
 }
