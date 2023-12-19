@@ -19,6 +19,7 @@ class NewNotePage extends StatelessWidget {
               
               databaseController.addNewNote();
               
+              
             },
           ),
           IconButton(
